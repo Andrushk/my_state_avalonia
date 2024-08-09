@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MyState.Scenarios.MyStates.MyStatesView">
+	<Border Margin="5" Padding="10" BorderBrush="LightGray" BorderThickness="5">
+        <DockPanel>
+            <TextBlock Text="Мои действия" DockPanel.Dock="Top" 
+                       Classes="h2" Margin="0,0,0,10"/>
+
+            <Button Content="На работе" DockPanel.Dock="Top" Command="{Binding AtWorkCommand}"/>
+            <Button Content="Отгул" DockPanel.Dock="Top" Command="{Binding DayOffCommand}"/>
+            <Button Content="Болен" DockPanel.Dock="Top" Command="{Binding SickCommand}"/>
+
+            <!--История моих действий-->
+            <ScrollViewer></ScrollViewer>
+		</DockPanel>
+    </Border>
+</UserControl>
