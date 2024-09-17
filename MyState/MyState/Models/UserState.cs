@@ -6,6 +6,8 @@ namespace MyState.Models
 
     public class UserState
     {
+        public Guid UserId { get; set; }
+
         public string UserName { get; set; }
 
         public UserStates State { get; set; }

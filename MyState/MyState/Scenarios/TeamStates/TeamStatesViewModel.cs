@@ -21,9 +21,9 @@ namespace MyState.Scenarios.TeamStates
 
         public TeamStatesViewModel()
         {
+            TeamService.MyTeamStateChanged += TeamService_MyTeamStateChanged;
             _refresh();
         }
-
 
         [RelayCommand(CanExecute = nameof(CanRefresh))]
         private void Refresh() => _refresh();
@@ -32,24 +32,20 @@ namespace MyState.Scenarios.TeamStates
 
         private async void _refresh()
         {
-            Debug.WriteLine("Refresh!!!!");
+            //Debug.WriteLine("Refresh!!!!");
+            Busy = true;
+            TeamService.RefreshMyTeamState();
+        }
 
-            try
+        private void TeamService_MyTeamStateChanged(object? sender, System.Collections.Generic.List<Models.UserState> e)
+        {
+            States.Clear();
+            foreach (var i in e)
             {
-                Busy = true;
-
-                var states = await TeamService.GetMyTeam();
-
-                States.Clear();
-                foreach (var i in states)
-                {
-                    States.Add(new UserStateViewModel(i));
-                }
+                States.Add(new UserStateViewModel(i));
             }
-            finally
-            {
-                Busy = false;
-            }
+
+            Busy = false;
         }
     }
 }
